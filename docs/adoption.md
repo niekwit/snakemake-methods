@@ -111,7 +111,9 @@ rules, live in the workflow.
   the wrapper's own `environment.yaml` (and pin file), resolved with the same
   function and `--wrapper-prefix` as the `wrapper:` directive. Snakemake
   hashes environments by content, so this job runs in the environment the
-  wrapper job used, also in the workflow's container.
+  wrapper job used, also in the workflow's container. Only the wrapper's own
+  packages are recorded, not its Python or R: the workflow's scripts don't run
+  there, so a wrapper's Python must not become "the" Python of the methods.
 - **git clones** (`git_versions`): `git rev-parse HEAD` of the clone, written
   as "commit 1a2b3c4". Pin clones to a commit
   (`git clone URL {output} && git -C {output} checkout SHA`) so that a

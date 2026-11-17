@@ -24,15 +24,16 @@ ENV_PACKAGES = {env: env_packages(env) for env in methods_envs()}
 
 # The installed packages of a conda environment (conda-meta records
 # name-version-build.json) with these names, plus the Python and R
-# interpreters; {source} is the source column
+# interpreters if params.interpreters is 1 (the workflow's own environments,
+# where its scripts run); params.source is the source column
 CONDA_META_VERSIONS = (
     '(ls "$CONDA_PREFIX/conda-meta" | '
     "sed -nE 's/^(.+)-([^-]+)-([^-]+)\\.json$/\\1\\t\\2/p' | "
     "awk -F '\\t' -v OFS='\\t' -v packages='{params.packages}' "
-    "-v source='{params.source}' "
+    "-v source='{params.source}' -v interpreters='{params.interpreters}' "
     '\'BEGIN {{ n = split(packages, a, " "); for (i = 1; i <= n; i++) '
     "keep[a[i]] = 1 }} "
-    '($1 in keep) || $1 == "python" || $1 == "r-base" '
+    '($1 in keep) || (interpreters && ($1 == "python" || $1 == "r-base")) '
     "{{ print $1, $2, source }}' | "
     "sort > {output}) 2> {log}"
 )
@@ -59,6 +60,7 @@ rule software_versions:
     params:
         packages=lambda w: " ".join(ENV_PACKAGES[w.env]),
         source="conda",
+        interpreters=1,
     threads: 1
     resources:
         runtime=10,
@@ -85,6 +87,8 @@ for _name, (_wrapper, _packages) in methods_wrappers().items():
         params:
             packages=" ".join(_packages),
             source="wrapper",
+            # No workflow script runs in a wrapper's environment
+            interpreters=0,
         threads: 1
         resources:
             runtime=10,
