@@ -1,0 +1,17 @@
+{#
+  Example methods template. Prose can be wrapped freely: the lines of a
+  paragraph are joined, blank lines separate paragraphs. Put {% if %} blocks
+  on their own lines. tool() cites a tool with its version at the first
+  mention (in render order), the name only after that.
+#}
+Data were analysed with the example workflow {{ workflow_version }}
+(https://github.com/niekwit/example) in {{ tool("snakemake") }}.
+
+## Read processing
+
+Read quality was assessed with {{ tool("fastqc") }}, and reports were combined
+with {{ tool("multiqc") }}. Adapters were trimmed with
+{{ tool("cutadapt", code(config["cutadapt"]["extra"])) }}.
+{% if config["dedup"] %}
+Duplicates were removed with {{ tool("picard") }} MarkDuplicates.
+{% endif %}

@@ -1,0 +1,9 @@
+# Workflow overrides of the snakemake-methods database (optional entries).
+#
+# tools: change shared tools (e.g. restrict the environments a version is
+# taken from) or add tools used by this workflow only.
+# references: change shared references (e.g. add a note) or add references
+# (checked against the publication, see tools/verify_references.py).
+tools:
+  # python: {envs: [qc, tss]}
+references: {}

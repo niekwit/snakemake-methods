@@ -1,0 +1,637 @@
+# Shared reference database, keyed by a short ID (first author + year).
+#
+# Fields: type (article | inproceedings | book | manual | misc), citation
+# (in-text, without parentheses), authors (as written in the reference list;
+# et_al: true when truncated), year, title, journal/volume/pages (article),
+# booktitle/pages (inproceedings), publisher (other types), doi, pmid, url
+# (when there is no DOI), note (appended to the full reference).
+#
+# Every entry is checked against the publication (Crossref/PubMed for DOIs);
+# never add a reference that has not been checked.
+
+amemiya2019:
+  citation: Amemiya et al., 2019
+  authors: [Amemiya HM, Kundaje A, Boyle AP]
+  year: 2019
+  title: "The ENCODE Blacklist: identification of problematic regions of the genome"
+  journal: Sci Rep
+  volume: 9
+  pages: "9354"
+  doi: 10.1038/s41598-019-45839-z
+  pmid: 31249361
+
+andrews2010:
+  type: misc
+  citation: Andrews, 2010
+  authors: [Andrews S]
+  year: 2010
+  title: "FastQC: a quality control tool for high throughput sequence data"
+  url: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+barretina2012:
+  citation: Barretina et al., 2012
+  authors: [Barretina J, Caponigro G, Stransky N]
+  et_al: true
+  year: 2012
+  title: >-
+    The Cancer Cell Line Encyclopedia enables predictive modelling of anticancer
+    drug sensitivity
+  journal: Nature
+  volume: 483
+  pages: 603–607
+  doi: 10.1038/nature11003
+  pmid: 22460905
+
+benjamini1995:
+  citation: Benjamini & Hochberg, 1995
+  authors: [Benjamini Y, Hochberg Y]
+  year: 1995
+  title: >-
+    Controlling the false discovery rate: a practical and powerful approach to
+    multiple testing
+  journal: J R Stat Soc B
+  volume: 57
+  pages: 289–300
+  doi: 10.1111/j.2517-6161.1995.tb02031.x
+
+broad2019:
+  type: misc
+  citation: Broad Institute, 2019
+  authors: [Broad Institute]
+  year: 2019
+  title: Picard toolkit
+  url: https://broadinstitute.github.io/picard/
+
+colic2019:
+  citation: Colic et al., 2019
+  authors: [Colic M, Wang G, Zimmermann M, Mascall K, McLaughlin M, Bertolet L,
+    Lenoir WF, Moffat J, Angers S, Durocher D, Hart T]
+  year: 2019
+  title: Identifying chemogenetic interactions from CRISPR screens with drugZ
+  journal: Genome Med
+  volume: 11
+  pages: "52"
+  doi: 10.1186/s13073-019-0665-3
+  pmid: 31439014
+
+danecek2021:
+  citation: Danecek et al., 2021
+  authors: [Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO,
+    Whitwham A, Keane T, McCarthy SA, Davies RM, Li H]
+  year: 2021
+  title: Twelve years of SAMtools and BCFtools
+  journal: GigaScience
+  volume: 10
+  pages: giab008
+  doi: 10.1093/gigascience/giab008
+  pmid: 33590861
+
+dyer2025:
+  citation: Dyer et al., 2025
+  authors: [Dyer SC, Austine-Orimoloye O, Azov AG]
+  et_al: true
+  year: 2025
+  title: Ensembl 2025
+  journal: Nucleic Acids Res
+  volume: 53
+  pages: D948–D957
+  doi: 10.1093/nar/gkae1071
+  pmid: 39656687
+
+encode2020:
+  citation: ENCODE Project Consortium, 2020
+  authors: [ENCODE Project Consortium, Moore JE, Purcaro MJ, Pratt HE]
+  et_al: true
+  year: 2020
+  title: Expanded encyclopaedias of DNA elements in the human and mouse genomes
+  journal: Nature
+  volume: 583
+  pages: 699–710
+  doi: 10.1038/s41586-020-2493-4
+  pmid: 32728249
+
+ewels2016:
+  citation: Ewels et al., 2016
+  authors: [Ewels P, Magnusson M, Lundin S, Käller M]
+  year: 2016
+  title: >-
+    MultiQC: summarize analysis results for multiple tools and samples in a
+    single report
+  journal: Bioinformatics
+  volume: 32
+  pages: 3047–3048
+  doi: 10.1093/bioinformatics/btw354
+  pmid: 27312411
+
+garnier:
+  type: misc
+  citation: Garnier
+  authors: [Garnier S]
+  title: "viridis: Colorblind-Friendly Color Maps for R"
+  publisher: R package
+  url: https://CRAN.R-project.org/package=viridis
+
+harris2020:
+  citation: Harris et al., 2020
+  authors: [Harris CR, Millman KJ, van der Walt SJ]
+  et_al: true
+  year: 2020
+  title: Array programming with NumPy
+  journal: Nature
+  volume: 585
+  pages: 357–362
+  doi: 10.1038/s41586-020-2649-2
+  pmid: 32939066
+
+hart2014:
+  citation: Hart et al., 2014
+  authors: [Hart T, Brown KR, Sircoulomb F, Rottapel R, Moffat J]
+  year: 2014
+  title: >-
+    Measuring error rates in genomic perturbation screens: gold standards for
+    human functional genomics
+  journal: Mol Syst Biol
+  volume: 10
+  pages: "733"
+  doi: 10.15252/msb.20145216
+  pmid: 24987113
+
+hart2017:
+  citation: Hart et al., 2017
+  authors: [Hart T, Tong AHY, Chan K]
+  et_al: true
+  year: 2017
+  title: Evaluation and design of genome-wide CRISPR/SpCas9 knockout screens
+  journal: G3 (Bethesda)
+  volume: 7
+  pages: 2719–2727
+  doi: 10.1534/g3.117.041277
+  pmid: 28655737
+
+heger2013:
+  citation: Heger et al., 2013
+  authors: [Heger A, Webber C, Goodson M, Ponting CP, Lunter G]
+  year: 2013
+  title: >-
+    GAT: a simulation framework for testing the association of genomic
+    intervals
+  journal: Bioinformatics
+  volume: 29
+  pages: 2046–2048
+  doi: 10.1093/bioinformatics/btt343
+  pmid: 23782611
+
+hinrichs2006:
+  citation: Hinrichs et al., 2006
+  authors: [Hinrichs AS, Karolchik D, Baertsch R]
+  et_al: true
+  year: 2006
+  title: "The UCSC Genome Browser Database: update 2006"
+  journal: Nucleic Acids Res
+  volume: 34
+  pages: D590–D598
+  doi: 10.1093/nar/gkj144
+  pmid: 16381938
+
+hunter2007:
+  citation: Hunter, 2007
+  authors: [Hunter JD]
+  year: 2007
+  title: "Matplotlib: a 2D graphics environment"
+  journal: Comput Sci Eng
+  volume: 9
+  pages: 90–95
+  doi: 10.1109/MCSE.2007.55
+
+iorio2018:
+  citation: Iorio et al., 2018
+  authors: [Iorio F, Behan FM, Gonçalves E, Bhosle SG, Chen E, Shepherd R,
+    Beaver C, Ansari R, Pooley R, Wilkinson P, Harper S, Butler AP, Stronach EA,
+    Saez-Rodriguez J, Yusa K, Garnett MJ]
+  year: 2018
+  title: >-
+    Unsupervised correction of gene-independent cell responses to CRISPR-Cas9
+    targeting
+  journal: BMC Genomics
+  volume: 19
+  pages: "604"
+  doi: 10.1186/s12864-018-4989-y
+  pmid: 30103702
+
+kent2002:
+  citation: Kent et al., 2002
+  authors: [Kent WJ, Sugnet CW, Furey TS, Roskin KM, Pringle TH, Zahler AM,
+    Haussler D]
+  year: 2002
+  title: The human genome browser at UCSC
+  journal: Genome Res
+  volume: 12
+  pages: 996–1006
+  doi: 10.1101/gr.229102
+  pmid: 12045153
+
+kent2010:
+  citation: Kent et al., 2010
+  authors: [Kent WJ, Zweig AS, Barber G, Hinrichs AS, Karolchik D]
+  year: 2010
+  title: >-
+    BigWig and BigBed: enabling browsing of large distributed datasets
+  journal: Bioinformatics
+  volume: 26
+  pages: 2204–2207
+  doi: 10.1093/bioinformatics/btq351
+  pmid: 20639541
+
+kim2021:
+  citation: Kim & Hart, 2021
+  authors: [Kim E, Hart T]
+  year: 2021
+  title: >-
+    Improved analysis of CRISPR fitness screens and reduced off-target effects
+    with the BAGEL2 gene essentiality classifier
+  journal: Genome Med
+  volume: 13
+  pages: "2"
+  doi: 10.1186/s13073-020-00809-3
+  pmid: 33407829
+
+kolde:
+  type: misc
+  citation: Kolde
+  authors: [Kolde R]
+  title: "pheatmap: Pretty Heatmaps"
+  publisher: R package
+  url: https://CRAN.R-project.org/package=pheatmap
+
+kruchten:
+  # Authors and title from plotly.py's CITATION.cff (title prefixed with the name)
+  type: misc
+  citation: Kruchten et al.
+  authors: [Kruchten N, Seier A, Parmer C]
+  title: >-
+    plotly.py: an interactive, open-source, and browser-based graphing library
+    for Python
+  url: https://github.com/plotly/plotly.py
+
+langmead2009:
+  citation: Langmead et al., 2009
+  authors: [Langmead B, Trapnell C, Pop M, Salzberg SL]
+  year: 2009
+  title: >-
+    Ultrafast and memory-efficient alignment of short DNA sequences to the
+    human genome
+  journal: Genome Biol
+  volume: 10
+  pages: R25
+  doi: 10.1186/gb-2009-10-3-r25
+  pmid: 19261174
+
+langmead2012:
+  citation: Langmead & Salzberg, 2012
+  authors: [Langmead B, Salzberg SL]
+  year: 2012
+  title: Fast gapped-read alignment with Bowtie 2
+  journal: Nat Methods
+  volume: 9
+  pages: 357–359
+  doi: 10.1038/nmeth.1923
+  pmid: 22388286
+
+larsson:
+  type: misc
+  citation: Larsson
+  authors: [Larsson J]
+  title: "eulerr: Area-Proportional Euler and Venn Diagrams with Ellipses"
+  publisher: R package
+  url: https://CRAN.R-project.org/package=eulerr
+
+lawrence2009:
+  citation: Lawrence et al., 2009
+  authors: [Lawrence M, Gentleman R, Carey V]
+  year: 2009
+  title: "rtracklayer: an R package for interfacing with genome browsers"
+  journal: Bioinformatics
+  volume: 25
+  pages: 1841–1842
+  doi: 10.1093/bioinformatics/btp328
+  pmid: 19468054
+
+lawrence2013:
+  citation: Lawrence et al., 2013
+  authors: [Lawrence M, Huber W, Pagès H, Aboyoun P, Carlson M, Gentleman R,
+    Morgan MT, Carey VJ]
+  year: 2013
+  title: Software for computing and annotating genomic ranges
+  journal: PLoS Comput Biol
+  volume: 9
+  pages: e1003118
+  doi: 10.1371/journal.pcbi.1003118
+  pmid: 23950696
+
+li2011:
+  citation: Li et al., 2011
+  authors: [Li Q, Brown JB, Huang H, Bickel PJ]
+  year: 2011
+  title: Measuring reproducibility of high-throughput experiments
+  journal: Ann Appl Stat
+  volume: 5
+  pages: 1752–1779
+  doi: 10.1214/11-AOAS466
+
+li2014:
+  citation: Li et al., 2014
+  authors: [Li W, Xu H, Xiao T, Cong L, Love MI, Zhang F, Irizarry RA, Liu JS,
+    Brown M, Liu XS]
+  year: 2014
+  title: >-
+    MAGeCK enables robust identification of essential genes from genome-scale
+    CRISPR/Cas9 knockout screens
+  journal: Genome Biol
+  volume: 15
+  pages: "554"
+  doi: 10.1186/s13059-014-0554-4
+  pmid: 25476604
+
+li2015:
+  citation: Li et al., 2015
+  authors: [Li W, Köster J, Xu H, Chen CH, Xiao T, Liu JS, Brown M, Liu XS]
+  year: 2015
+  title: Quality control, modeling, and visualization of CRISPR screens with MAGeCK-VISPR
+  journal: Genome Biol
+  volume: 16
+  pages: "281"
+  doi: 10.1186/s13059-015-0843-6
+  pmid: 26673418
+
+liao2014:
+  citation: Liao et al., 2014
+  authors: [Liao Y, Smyth GK, Shi W]
+  year: 2014
+  title: >-
+    featureCounts: an efficient general purpose program for assigning sequence
+    reads to genomic features
+  journal: Bioinformatics
+  volume: 30
+  pages: 923–930
+  doi: 10.1093/bioinformatics/btt656
+  pmid: 24227677
+
+love2014:
+  citation: Love et al., 2014
+  authors: [Love MI, Huber W, Anders S]
+  year: 2014
+  title: >-
+    Moderated estimation of fold change and dispersion for RNA-seq data with
+    DESeq2
+  journal: Genome Biol
+  volume: 15
+  pages: "550"
+  doi: 10.1186/s13059-014-0550-8
+  pmid: 25516281
+
+martin2011:
+  citation: Martin, 2011
+  authors: [Martin M]
+  year: 2011
+  title: Cutadapt removes adapter sequences from high-throughput sequencing reads
+  journal: EMBnet.journal
+  volume: 17
+  pages: 10–12
+  doi: 10.14806/ej.17.1.200
+
+mckinney2010:
+  type: inproceedings
+  citation: McKinney, 2010
+  authors: [McKinney W]
+  year: 2010
+  title: Data structures for statistical computing in Python
+  booktitle: Proc 9th Python in Science Conference
+  pages: 56–61
+  doi: 10.25080/Majora-92bf1922-00a
+
+molder2021:
+  citation: Mölder et al., 2021
+  authors: [Mölder F, Jablonski KP, Letcher B, Hall MB, Tomkins-Tinch CH,
+    Sochat V, Forster J, Lee S, Twardziok SO, Kanitz A, Wilm A, Holtgrewe M,
+    Rahmann S, Nahnsen S, Köster J]
+  year: 2021
+  title: Sustainable data analysis with Snakemake
+  journal: F1000Research
+  volume: 10
+  pages: "33"
+  # Version 2 (15 authors), as cited by the Snakemake documentation; PubMed
+  # (PMID 34035898) indexes version 3 (10.12688/f1000research.29032.3)
+  doi: 10.12688/f1000research.29032.2
+
+morgan:
+  type: misc
+  citation: Morgan & Shepherd
+  authors: [Morgan M, Shepherd L]
+  title: "AnnotationHub: Client to access AnnotationHub resources"
+  publisher: Bioconductor package
+  doi: 10.18129/B9.bioc.AnnotationHub
+
+orchard2020:
+  citation: Orchard et al., 2020
+  authors: [Orchard P, Kyono Y, Hensley J, Kitzman JO, Parker SCJ]
+  year: 2020
+  title: >-
+    Quantification, dynamic visualization, and validation of bias in ATAC-seq
+    data with ataqv
+  journal: Cell Syst
+  volume: 10
+  pages: 298–306.e4
+  doi: 10.1016/j.cels.2020.02.009
+  pmid: 32213349
+
+pedregosa2011:
+  citation: Pedregosa et al., 2011
+  authors: [Pedregosa F, Varoquaux G, Gramfort A]
+  et_al: true
+  year: 2011
+  title: "Scikit-learn: machine learning in Python"
+  journal: J Mach Learn Res
+  volume: 12
+  pages: 2825–2830
+  url: https://jmlr.org/papers/v12/pedregosa11a.html
+
+pysam:
+  type: misc
+  citation: pysam developers
+  authors: [pysam developers]
+  title: "pysam: a Python module for reading and manipulating SAM/BAM files"
+  url: https://github.com/pysam-developers/pysam
+
+python:
+  type: manual
+  citation: Python Software Foundation
+  authors: [Python Software Foundation]
+  title: Python language reference
+  url: https://www.python.org
+
+quinlan2010:
+  citation: Quinlan & Hall, 2010
+  authors: [Quinlan AR, Hall IM]
+  year: 2010
+  title: "BEDTools: a flexible suite of utilities for comparing genomic features"
+  journal: Bioinformatics
+  volume: 26
+  pages: 841–842
+  doi: 10.1093/bioinformatics/btq033
+  pmid: 20110278
+
+r:
+  type: manual
+  citation: R Core Team
+  authors: [R Core Team]
+  title: "R: A language and environment for statistical computing"
+  publisher: R Foundation for Statistical Computing, Vienna, Austria
+  url: https://www.R-project.org
+
+ramirez2016:
+  citation: Ramírez et al., 2016
+  authors: [Ramírez F, Ryan DP, Grüning B, Bhardwaj V, Kilpert F, Richter AS,
+    Heyne S, Dündar F, Manke T]
+  year: 2016
+  title: >-
+    deepTools2: a next generation web server for deep-sequencing data analysis
+  journal: Nucleic Acids Res
+  volume: 44
+  pages: W160–W165
+  doi: 10.1093/nar/gkw257
+  pmid: 27079975
+
+slowikowski:
+  type: misc
+  citation: Slowikowski
+  authors: [Slowikowski K]
+  title: >-
+    ggrepel: Automatically Position Non-Overlapping Text Labels with 'ggplot2'
+  publisher: R package
+  url: https://CRAN.R-project.org/package=ggrepel
+
+smit2015:
+  type: misc
+  citation: Smit et al., 2013–2015
+  authors: [Smit AFA, Hubley R, Green P]
+  year: 2013–2015
+  title: RepeatMasker Open-4.0
+  url: http://www.repeatmasker.org
+
+stephens2017:
+  citation: Stephens, 2017
+  authors: [Stephens M]
+  year: 2017
+  title: "False discovery rates: a new deal"
+  journal: Biostatistics
+  volume: 18
+  pages: 275–294
+  doi: 10.1093/biostatistics/kxw041
+  pmid: 27756721
+
+szklarczyk2023:
+  citation: Szklarczyk et al., 2023
+  authors: [Szklarczyk D, Kirsch R, Koutrouli M, Nastou K, Mehryary F,
+    Hachilif R, Gable AL, Fang T, Doncheva NT, Pyysalo S, Bork P, Jensen LJ,
+    von Mering C]
+  year: 2023
+  title: >-
+    The STRING database in 2023: protein-protein association networks and
+    functional enrichment analyses for any sequenced genome of interest
+  journal: Nucleic Acids Res
+  volume: 51
+  pages: D638–D646
+  doi: 10.1093/nar/gkac1000
+  pmid: 36370105
+
+szklarczyk2025:
+  citation: Szklarczyk et al., 2025
+  authors: [Szklarczyk D, Nastou K, Koutrouli M, Kirsch R, Mehryary F,
+    Hachilif R, Hu D, Peluso ME, Huang Q, Fang T, Doncheva NT, Pyysalo S,
+    Bork P, Jensen LJ, von Mering C]
+  year: 2025
+  title: >-
+    The STRING database in 2025: protein networks with directionality of
+    regulation
+  journal: Nucleic Acids Res
+  volume: 53
+  pages: D730–D737
+  doi: 10.1093/nar/gkae1113
+  pmid: 39558183
+
+virtanen2020:
+  citation: Virtanen et al., 2020
+  authors: [Virtanen P, Gommers R, Oliphant TE]
+  et_al: true
+  year: 2020
+  title: "SciPy 1.0: fundamental algorithms for scientific computing in Python"
+  journal: Nat Methods
+  volume: 17
+  pages: 261–272
+  doi: 10.1038/s41592-019-0686-2
+  pmid: 32015543
+
+wang2019:
+  citation: Wang et al., 2019
+  authors: [Wang B, Wang M, Zhang W]
+  et_al: true
+  year: 2019
+  title: Integrative analysis of pooled CRISPR genetic screens using MAGeCKFlute
+  journal: Nat Protoc
+  volume: 14
+  pages: 756–780
+  doi: 10.1038/s41596-018-0113-7
+  pmid: 30710114
+
+wickham2016:
+  type: book
+  citation: Wickham, 2016
+  authors: [Wickham H]
+  year: 2016
+  title: "ggplot2: Elegant Graphics for Data Analysis"
+  publisher: Springer, New York
+  url: https://ggplot2.tidyverse.org
+
+wickham2019:
+  citation: Wickham et al., 2019
+  authors: [Wickham H, Averick M, Bryan J]
+  et_al: true
+  year: 2019
+  title: Welcome to the tidyverse
+  journal: J Open Source Softw
+  volume: 4
+  pages: "1686"
+  doi: 10.21105/joss.01686
+
+wilke:
+  type: misc
+  citation: Wilke
+  authors: [Wilke CO]
+  title: "cowplot: Streamlined Plot Theme and Plot Annotations for 'ggplot2'"
+  publisher: R package
+  url: https://CRAN.R-project.org/package=cowplot
+
+yu2015:
+  citation: Yu et al., 2015
+  authors: [Yu G, Wang LG, He QY]
+  year: 2015
+  title: >-
+    ChIPseeker: an R/Bioconductor package for ChIP peak annotation, comparison
+    and visualization
+  journal: Bioinformatics
+  volume: 31
+  pages: 2382–2383
+  doi: 10.1093/bioinformatics/btv145
+  pmid: 25765347
+
+zhang2008:
+  citation: Zhang et al., 2008
+  authors: [Zhang Y, Liu T, Meyer CA, Eeckhoute J, Johnson DS, Bernstein BE,
+    Nusbaum C, Myers RM, Brown M, Li W, Liu XS]
+  year: 2008
+  title: Model-based analysis of ChIP-Seq (MACS)
+  journal: Genome Biol
+  volume: 9
+  pages: R137
+  doi: 10.1186/gb-2008-9-9-r137
+  pmid: 18798982

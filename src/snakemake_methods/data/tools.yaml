@@ -1,0 +1,98 @@
+# Shared tool database, keyed by a short ID used in templates: tool("macs2").
+#
+# Fields: name (as written in the text), references (keys of
+# references.yaml), packages (conda package names, or the names used by the
+# git/API version rules, to look up the version), envs (optional: only
+# versions from these environments), references_by_version (optional:
+# {version prefix: reference}, for services whose citation depends on the
+# version).
+
+# Workflow management
+snakemake: {name: Snakemake, references: [molder2021], packages: [snakemake]}
+
+# Read QC, trimming and alignment
+fastqc: {name: FastQC, references: [andrews2010], packages: [fastqc]}
+multiqc: {name: MultiQC, references: [ewels2016], packages: [multiqc]}
+cutadapt: {name: cutadapt, references: [martin2011], packages: [cutadapt]}
+bowtie: {name: Bowtie, references: [langmead2009], packages: [bowtie]}
+bowtie2: {name: Bowtie 2, references: [langmead2012], packages: [bowtie2]}
+samtools: {name: SAMtools, references: [danecek2021], packages: [samtools]}
+pysam: {name: pysam, references: [pysam], packages: [pysam]}
+picard: {name: Picard, references: [broad2019], packages: [picard]}
+deeptools: {name: deepTools, references: [ramirez2016], packages: [deeptools]}
+ataqv: {name: ataqv, references: [orchard2020], packages: [ataqv]}
+
+# Genomic intervals and annotation
+bedtools: {name: BEDTools, references: [quinlan2010], packages: [bedtools]}
+ucsc_bigwig:
+  name: UCSC bedClip and bedGraphToBigWig
+  references: [kent2010]
+  packages: [ucsc-bedgraphtobigwig]
+liftover: {name: liftOver, references: [hinrichs2006], packages: [ucsc-liftover]}
+featurecounts: {name: featureCounts, references: [liao2014], packages: [subread]}
+gat: {name: GAT, references: [heger2013], packages: [gat]}
+rtracklayer:
+  name: rtracklayer
+  references: [lawrence2009]
+  packages: [bioconductor-rtracklayer]
+txdbmaker:
+  name: txdbmaker
+  references: [lawrence2013]
+  packages: [bioconductor-txdbmaker]
+chipseeker:
+  name: ChIPseeker
+  references: [yu2015]
+  packages: [bioconductor-chipseeker]
+annotationhub:
+  name: AnnotationHub
+  references: [morgan]
+  packages: [bioconductor-annotationhub]
+
+# Peaks
+macs2: {name: MACS2, references: [zhang2008], packages: [macs2]}
+idr: {name: IDR, references: [li2011], packages: [idr]}
+
+# Differential analysis
+deseq2: {name: DESeq2, references: [love2014], packages: [bioconductor-deseq2]}
+ashr: {name: ashr, references: [stephens2017], packages: [r-ashr]}
+
+# CRISPR screens
+mageck: {name: MAGeCK, references: [li2014], packages: [mageck]}
+crisprcleanr:
+  name: CRISPRcleanR
+  references: [iorio2018]
+  packages: [r-crisprcleanr, bioconductor-crisprcleanr]
+bagel2: {name: BAGEL2, references: [kim2021], packages: [bagel2]}
+drugz: {name: DrugZ, references: [colic2019], packages: [drugz]}
+string:
+  name: STRING
+  # Version reported by the STRING API (string_db_version rule); each version
+  # is cited with the paper that describes it (check string-db.org when a new
+  # version appears)
+  packages: [string-db]
+  references_by_version: {"12.0": szklarczyk2023, "12.5": szklarczyk2025}
+
+# Python
+python: {name: Python, references: [python], packages: [python]}
+numpy: {name: NumPy, references: [harris2020], packages: [numpy]}
+pandas: {name: pandas, references: [mckinney2010], packages: [pandas]}
+scipy: {name: SciPy, references: [virtanen2020], packages: [scipy]}
+scikit-learn:
+  name: scikit-learn
+  references: [pedregosa2011]
+  packages: [scikit-learn]
+matplotlib:
+  name: Matplotlib
+  references: [hunter2007]
+  packages: [matplotlib-base, matplotlib]
+plotly: {name: Plotly, references: [kruchten], packages: [plotly]}
+
+# R
+r: {name: R, references: [r], packages: [r-base]}
+tidyverse: {name: tidyverse, references: [wickham2019], packages: [r-tidyverse]}
+ggplot2: {name: ggplot2, references: [wickham2016], packages: [r-ggplot2]}
+ggrepel: {name: ggrepel, references: [slowikowski], packages: [r-ggrepel]}
+pheatmap: {name: pheatmap, references: [kolde], packages: [r-pheatmap]}
+cowplot: {name: cowplot, references: [wilke], packages: [r-cowplot]}
+viridis: {name: viridis, references: [garnier], packages: [r-viridis]}
+eulerr: {name: eulerr, references: [larsson], packages: [r-eulerr]}
