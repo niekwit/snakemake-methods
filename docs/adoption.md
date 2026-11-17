@@ -162,7 +162,13 @@ Conventions:
   ```
   gives "Peaks were called." or "Peaks were called and filtered with IDR."
 - **First mention is in render order.** A `{% set x = tool(...) %}` counts as
-  a mention where it is rendered, not where `x` is used.
+  a mention where it is rendered, not where `x` is used, and a macro's
+  mentions count where the macro is called.
+- **Call macros with `| trim`** (`{{ blacklist_text() | trim }}`): a macro's
+  output ends with a newline, which would otherwise end the paragraph.
+- **Don't start a prose line with `|`, `- `, `* ` or `1. `**, also not through
+  a variable (e.g. `{{ lfc_text }}` giving "|log2 fold change| > 1"): such
+  lines are kept as table rows or list items.
 - **Statistical methods cite the published method or package** (e.g. DESeq2's
   Wald test, Benjamini–Hochberg), never a description of custom code.
 

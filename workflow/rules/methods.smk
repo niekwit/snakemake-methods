@@ -151,7 +151,8 @@ rule string_db_version:
 rule methods:
     input:
         versions=METHODS_VERSION_FILES,
-        targets=methods_targets(),
+        # A function: the targets may be defined after this file is included
+        targets=lambda w: methods_targets(),
     output:
         methods="methods/methods.md",
         versions="methods/software_versions.tsv",
