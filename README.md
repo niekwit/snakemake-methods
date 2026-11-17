@@ -20,7 +20,7 @@ In a workflow's `workflow/envs/methods.yaml`:
 
 ```yaml
   - pip:
-      - git+https://github.com/niekwit/snakemake-methods@v0.1.0
+      - git+https://github.com/niekwit/snakemake-methods@v0.1.1
 ```
 
 ## Use

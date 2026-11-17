@@ -72,3 +72,26 @@ def test_missing_version_logged(tmp_path, monkeypatch):
     builder = run(sm)
     assert builder.missing == ["No version found for DESeq2 (deseq2)"]
     assert "WARNING" in (tmp_path / "methods.log").read_text()
+
+
+def test_run_with_template_and_overrides_as_text(tmp_path, monkeypatch):
+    monkeypatch.delenv("SNAKEMAKE_METHODS_STRICT", raising=False)
+    sm = fake_snakemake(tmp_path)
+    params = dict(sm.params)
+    params["template_text"] = (tmp_path / "methods.md.j2").read_text()
+    params["overrides_text"] = (tmp_path / "tools.yaml").read_text()
+    del params["template"], params["overrides"]
+    sm.params = params
+    run(sm, context={"extra_text": "and IDR"}, today="2026-11-17")
+    methods = (tmp_path / "methods.md").read_text()
+    assert "Peaks were called with MACS2 callpeak v2.2.9.1" in methods
+    assert "and IDR.\n" in methods
+
+
+def test_unknown_overrides_section_as_text(tmp_path):
+    from snakemake_methods import DatabaseError
+
+    sm = fake_snakemake(tmp_path)
+    sm.params = dict(sm.params, overrides_text="tool: {}\n")
+    with pytest.raises(DatabaseError, match="unknown sections"):
+        run(sm)

@@ -170,8 +170,10 @@ rule methods:
         runtime=10,
         mem_mb=1000,
     params:
-        template=workflow.source_path("../methods/methods.md.j2"),
-        overrides=workflow.source_path("../methods/tools.yaml"),
+        # Text, not paths: source_path() gives a new runtime-cache path at
+        # every invocation, which would rerun this rule every time
+        template_text=open(workflow.source_path("../methods/methods.md.j2")).read(),
+        overrides_text=open(workflow.source_path("../methods/tools.yaml")).read(),
         snakemake_version=SNAKEMAKE_VERSION,
         workflow_version=VERSION,
     script:

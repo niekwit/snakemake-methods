@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "snakemake-methods"
-version = "0.1.0"
+version = "0.1.1"
 description = "Methods section, software versions table and references of a Snakemake run"
 readme = "README.md"
 requires-python = ">=3.10"

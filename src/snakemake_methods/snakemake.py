@@ -9,14 +9,23 @@ Expected in the rule:
     output.methods   methods.md
     output.versions  software_versions.tsv
     output.bibtex    references.bib (optional)
-    params.template  methods template, as workflow.source_path(...)
-    params.overrides workflow overrides of the database (optional, YAML)
+    params.template_text  the methods template (Jinja2) as text
+    params.overrides_text workflow overrides of the database as YAML text
+                     (optional)
+    (or params.template / params.overrides: paths of these files)
     params.snakemake_version (optional)
     params.citation_style "id" (default: PubMed ID, else DOI, else URL) or
                      "author-year"
     log[0]           log file
 
-All params are also available in the template by name, besides config,
+Pass the template and overrides as text, read while the workflow is parsed
+(open(workflow.source_path(...)).read()): source_path() gives a new
+runtime-cache path at every invocation, so a path in params would make
+Snakemake rerun the rule every time, while the text changes only when the
+files do. This also works when the workflow is used as a module.
+
+All params (but the template and overrides) are also available in the
+template by name, besides config,
 params and the context given here. The environment variable
 SNAKEMAKE_METHODS_STRICT=1 (or params.strict) fails the rule for a tool
 without version or reference.
@@ -25,9 +34,11 @@ without version or reference.
 import logging
 import os
 
+import yaml
+
 from .builder import MethodsBuilder
-from .db import Database, load_overrides
-from .render import render_template
+from .db import Database, DatabaseError, load_overrides
+from .render import render_string, render_template
 from .versions import load_versions
 from .writers import write_bibtex, write_methods, write_versions
 
@@ -62,7 +73,14 @@ def run(snakemake, context=None, preamble=None, title="Methods", today=None):
     for name, packages in versions.items():
         logging.info(f"{name}: {len(packages)} packages")
 
-    db = Database(overrides=load_overrides(params.get("overrides")))
+    if params.get("overrides_text"):
+        overrides = yaml.safe_load(params["overrides_text"]) or {}
+        unknown = set(overrides) - {"references", "tools"}
+        if unknown:
+            raise DatabaseError(f"overrides: unknown sections {sorted(unknown)}")
+    else:
+        overrides = load_overrides(params.get("overrides"))
+    db = Database(overrides=overrides)
     builder = MethodsBuilder(
         versions=versions,
         extra={"snakemake": params.get("snakemake_version")},
@@ -70,10 +88,14 @@ def run(snakemake, context=None, preamble=None, title="Methods", today=None):
         strict=_strict(params),
         style=params.get("citation_style", "id"),
     )
-    variables = dict(params)
+    sources = ("template", "template_text", "overrides", "overrides_text")
+    variables = {k: v for k, v in params.items() if k not in sources}
     variables.update(context or {})
     variables.update(config=config, params=params)
-    body = render_template(params["template"], builder, **variables)
+    if params.get("template_text"):
+        body = render_string(params["template_text"], builder, **variables)
+    else:
+        body = render_template(params["template"], builder, **variables)
 
     write_methods(
         outputs["methods"],
