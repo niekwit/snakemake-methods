@@ -424,17 +424,18 @@ mckinney2010:
 
 molder2021:
   citation: Mölder et al., 2021
-  authors: [Mölder F, Jablonski KP, Letcher B, Hall MB, Tomkins-Tinch CH,
-    Sochat V, Forster J, Lee S, Twardziok SO, Kanitz A, Wilm A, Holtgrewe M,
+  # Version 3 of the article, as indexed by PubMed
+  authors: [Mölder F, Jablonski KP, Letcher B, Hall MB, van Dyken PC,
+    Tomkins-Tinch CH, Sochat V, Forster J, Vieira FG, Meesters C, Lee S,
+    Twardziok SO, Kanitz A, VanCampen J, Malladi V, Wilm A, Holtgrewe M,
     Rahmann S, Nahnsen S, Köster J]
   year: 2021
   title: Sustainable data analysis with Snakemake
   journal: F1000Research
   volume: 10
   pages: "33"
-  # Version 2 (15 authors), as cited by the Snakemake documentation; PubMed
-  # (PMID 34035898) indexes version 3 (10.12688/f1000research.29032.3)
-  doi: 10.12688/f1000research.29032.2
+  doi: 10.12688/f1000research.29032.3
+  pmid: 34035898
 
 morgan:
   type: misc

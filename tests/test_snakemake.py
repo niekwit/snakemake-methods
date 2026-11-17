@@ -47,7 +47,7 @@ def test_run_writes_outputs(tmp_path, monkeypatch):
     methods = (tmp_path / "methods.md").read_text()
     assert (
         "Data were analysed with the workflow v1.0.0 in Snakemake v9.27.1 "
-        "(DOI: 10.12688/f1000research.29032.2). Peaks were called with MACS2 callpeak v2.2.9.1 "
+        "(PubMed ID: 34035898). Peaks were called with MACS2 callpeak v2.2.9.1 "
         "(`-p 0.01`; PubMed ID: 18798982) and IDR.\n" in methods
     )
     assert "## Configuration\n\n```yaml\nmacs2: {p: 0.01}\n```\n" in methods

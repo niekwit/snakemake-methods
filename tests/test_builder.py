@@ -29,10 +29,7 @@ def test_envs_restriction(versions):
 
 
 def test_extra_versions(builder):
-    assert (
-        builder.tool("snakemake")
-        == "Snakemake v9.27.1 (DOI: 10.12688/f1000research.29032.2)"
-    )
+    assert builder.tool("snakemake") == "Snakemake v9.27.1 (PubMed ID: 34035898)"
 
 
 def test_git_version(builder):
