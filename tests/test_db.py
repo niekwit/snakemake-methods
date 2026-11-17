@@ -29,12 +29,24 @@ def test_citations_are_unique(db):
 
 
 def test_format_article(db):
-    assert db.reference("zhang2008").format() == (
+    zhang = db.reference("zhang2008")
+    assert zhang.format("author-year") == (
         "Zhang Y, Liu T, Meyer CA, Eeckhoute J, Johnson DS, Bernstein BE, Nusbaum "
         "C, Myers RM, Brown M, Li W, Liu XS (2008). Model-based analysis of "
         "ChIP-Seq (MACS). Genome Biol 9:R137. "
         "https://doi.org/10.1186/gb-2008-9-9-r137"
     )
+    # With the PubMed ID cited in the text
+    assert zhang.format() == zhang.format("author-year").replace(
+        "R137. ", "R137. PubMed ID: 18798982. "
+    )
+
+
+def test_in_text(db):
+    assert db.reference("zhang2008").in_text() == "PubMed ID: 18798982"
+    assert db.reference("hunter2007").in_text() == "DOI: 10.1109/MCSE.2007.55"
+    assert db.reference("python").in_text() == "https://www.python.org"
+    assert db.reference("zhang2008").in_text("author-year") == "Zhang et al., 2008"
 
 
 def test_format_et_al_and_software(db):

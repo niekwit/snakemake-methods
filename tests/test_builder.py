@@ -4,14 +4,14 @@ from snakemake_methods import Database, MethodsBuilder, MethodsError, Version
 
 
 def test_first_mention_has_version_and_citation(builder):
-    assert builder.tool("macs2") == "MACS2 v2.2.9.1 (Zhang et al., 2008)"
+    assert builder.tool("macs2") == "MACS2 v2.2.9.1 (PubMed ID: 18798982)"
     assert builder.tool("macs2") == "MACS2"
     assert builder.tool("macs2", "callpeak") == "MACS2 (callpeak)"
 
 
 def test_detail_on_first_mention(builder):
     assert builder.tool("samtools", "`view -F 1804`") == (
-        "SAMtools v1.21 (`view -F 1804`; Danecek et al., 2021)"
+        "SAMtools v1.21 (`view -F 1804`; PubMed ID: 33590861)"
     )
 
 
@@ -29,15 +29,18 @@ def test_envs_restriction(versions):
 
 
 def test_extra_versions(builder):
-    assert builder.tool("snakemake") == "Snakemake v9.27.1 (Mölder et al., 2021)"
+    assert (
+        builder.tool("snakemake")
+        == "Snakemake v9.27.1 (DOI: 10.12688/f1000research.29032.2)"
+    )
 
 
 def test_git_version(builder):
-    assert builder.tool("bagel2") == "BAGEL2 commit 1a2b3c4 (Kim & Hart, 2021)"
+    assert builder.tool("bagel2") == "BAGEL2 commit 1a2b3c4 (PubMed ID: 33407829)"
 
 
 def test_references_by_version(builder):
-    assert builder.tool("string") == "STRING v12.0 (Szklarczyk et al., 2023)"
+    assert builder.tool("string") == "STRING v12.0 (PubMed ID: 36370105)"
 
 
 def test_reference_by_unknown_version_is_a_problem(versions):
@@ -50,7 +53,7 @@ def test_reference_by_unknown_version_is_a_problem(versions):
 
 
 def test_missing_version_warns_or_raises(builder):
-    assert builder.tool("deseq2") == "DESeq2 (Love et al., 2014)"
+    assert builder.tool("deseq2") == "DESeq2 (PubMed ID: 25516281)"
     assert builder.missing == ["No version found for DESeq2 (deseq2)"]
     strict = MethodsBuilder(versions={}, strict=True)
     with pytest.raises(MethodsError, match="No version found for DESeq2"):
@@ -65,9 +68,11 @@ def test_unknown_tool_and_reference(builder):
 
 
 def test_cite_and_reference_list(builder):
-    assert builder.cite("benjamini1995") == "(Benjamini & Hochberg, 1995)"
+    assert builder.cite("benjamini1995") == (
+        "(DOI: 10.1111/j.2517-6161.1995.tb02031.x)"
+    )
     assert builder.citation("zhang2008", "amemiya2019") == (
-        "Zhang et al., 2008; Amemiya et al., 2019"
+        "PubMed ID: 18798982; PubMed ID: 31249361"
     )
     builder.cite("benjamini1995")
     assert builder.cited == ["benjamini1995", "zhang2008", "amemiya2019"]
@@ -80,7 +85,7 @@ def test_cite_and_reference_list(builder):
 
 
 def test_r_version_from_r_package(builder):
-    assert builder.tool("ashr") == "ashr v2.2-63 (Stephens, 2017)"
+    assert builder.tool("ashr") == "ashr v2.2-63 (PubMed ID: 27756721)"
 
 
 def test_package_version(builder):
@@ -88,3 +93,20 @@ def test_package_version(builder):
     assert builder.package_version("python", env="qc") == "3.9.2"
     assert builder.package_version("nope") == ""
     assert builder.cited == []
+
+
+def test_in_text_falls_back_to_doi_then_url(builder):
+    # No PubMed ID: DOI; no DOI: URL
+    assert builder.citation("martin2011") == "DOI: 10.14806/ej.17.1.200"
+    assert builder.citation("kolde") == "https://CRAN.R-project.org/package=pheatmap"
+
+
+def test_author_year_style(versions):
+    b = MethodsBuilder(versions=versions, style="author-year")
+    assert b.tool("macs2") == "MACS2 v2.2.9.1 (Zhang et al., 2008)"
+    assert b.cite("benjamini1995") == "(Benjamini & Hochberg, 1995)"
+
+
+def test_unknown_style():
+    with pytest.raises(ValueError, match="Unknown citation style"):
+        MethodsBuilder(style="numeric")

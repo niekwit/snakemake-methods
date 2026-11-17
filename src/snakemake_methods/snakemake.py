@@ -12,6 +12,8 @@ Expected in the rule:
     params.template  methods template, as workflow.source_path(...)
     params.overrides workflow overrides of the database (optional, YAML)
     params.snakemake_version (optional)
+    params.citation_style "id" (default: PubMed ID, else DOI, else URL) or
+                     "author-year"
     log[0]           log file
 
 All params are also available in the template by name, besides config,
@@ -66,6 +68,7 @@ def run(snakemake, context=None, preamble=None, title="Methods", today=None):
         extra={"snakemake": params.get("snakemake_version")},
         db=db,
         strict=_strict(params),
+        style=params.get("citation_style", "id"),
     )
     variables = dict(params)
     variables.update(context or {})

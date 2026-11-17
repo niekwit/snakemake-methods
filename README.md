@@ -2,8 +2,9 @@
 
 Writes a methods section (`methods.md`), a software versions table and a
 BibTeX reference list from a Snakemake run. The methods describe only the
-steps that were run, cite each tool with its version at its first mention,
-list only the cited references and end with the configuration of the run.
+steps that were run, cite each tool with its version at its first mention
+(by PubMed ID, else DOI, else URL), list only the cited references and end
+with the configuration of the run.
 
 - **Package** (`snakemake_methods`): versions, citations, rendering and
   writers, plus a shared database of tools and references
@@ -40,8 +41,10 @@ and filtered with {{ tool("idr") }}
 .
 ```
 
-gives "Peaks were called with MACS2 v2.2.9.1 (`-p 0.01`; Zhang et al., 2008)
-and filtered with IDR v2.0.4.2 (Li et al., 2011)."
+gives, for example, "Peaks were called with MACS2 v2.2.9.1 (`-p 0.01`;
+PubMed ID: 18798982) and filtered with IDR v2.0.4.2
+(DOI: 10.1214/11-AOAS466)." The reference list gives the full references,
+with their PubMed IDs.
 
 ## Development
 

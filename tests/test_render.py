@@ -43,7 +43,7 @@ Samples: {{ ["a", "b", "c"] | join_and }}; {{ 10000 | number }} reads; {{ 0.5 | 
     text = render_string(source, builder, p=0.01, idr=False)
     assert text == (
         "## Peaks\n\n"
-        "Peaks were called with MACS2 v2.2.9.1 (`-p 0.01`; Zhang et al., 2008). "
+        "Peaks were called with MACS2 v2.2.9.1 (`-p 0.01`; PubMed ID: 18798982). "
         "Samples: a, b and c; 10,000 reads; 50%."
     )
 
@@ -61,5 +61,5 @@ def test_render_template_file_with_include(tmp_path, builder):
     text = render_template(str(tmp_path / "methods.md.j2"), builder)
     # First mention in render order
     assert text == (
-        "Intro SAMtools v1.21 (Danecek et al., 2021).\n\nAligned with SAMtools."
+        "Intro SAMtools v1.21 (PubMed ID: 33590861).\n\nAligned with SAMtools."
     )

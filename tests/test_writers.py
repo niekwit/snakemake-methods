@@ -16,11 +16,11 @@ def test_methods_markdown(builder):
         "*Generated on 2026-11-17 from the configuration of the run (appended "
         "below). Software versions are those installed in the conda environments "
         "of the run.*\n\n"
-        "Peaks were called with MACS2 v2.2.9.1 (Zhang et al., 2008).\n\n"
+        "Peaks were called with MACS2 v2.2.9.1 (PubMed ID: 18798982).\n\n"
         "## References\n\n"
         "- Zhang Y, Liu T, Meyer CA, Eeckhoute J, Johnson DS, Bernstein BE, "
         "Nusbaum C, Myers RM, Brown M, Li W, Liu XS (2008). Model-based analysis "
-        "of ChIP-Seq (MACS). Genome Biol 9:R137. "
+        "of ChIP-Seq (MACS). Genome Biol 9:R137. PubMed ID: 18798982. "
         "https://doi.org/10.1186/gb-2008-9-9-r137\n\n"
         "## Configuration\n\n```yaml\nmacs2: {pval: 0.01}\n```\n"
     )

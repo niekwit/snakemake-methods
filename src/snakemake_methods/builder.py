@@ -15,6 +15,11 @@ class MethodsError(RuntimeError):
     pass
 
 
+# In-text citation styles: "id" (PubMed ID, else DOI, else URL) and
+# "author-year" ("Zhang et al., 2008")
+CITATION_STYLES = ("id", "author-year")
+
+
 class MethodsBuilder:
     """
     versions: {environment: {package: Version}} (load_versions)
@@ -22,9 +27,16 @@ class MethodsBuilder:
     db: Database (default: the package database without overrides)
     strict: raise MethodsError for a mentioned tool without version or
         reference, instead of a warning
+    style: in-text citation style, "id" ("PubMed ID: 18798982", else
+        "DOI: ...", else the URL) or "author-year" ("Zhang et al., 2008")
     """
 
-    def __init__(self, versions=None, extra=None, db=None, strict=False):
+    def __init__(self, versions=None, extra=None, db=None, strict=False, style="id"):
+        if style not in CITATION_STYLES:
+            raise ValueError(
+                f"Unknown citation style {style!r} (one of {CITATION_STYLES})"
+            )
+        self.style = style
         self.versions = versions or {}
         self.extra = {
             k: v if isinstance(v, Version) else Version(str(v), OTHER)
@@ -85,7 +97,7 @@ class MethodsBuilder:
             self.db.reference(key)
             if key not in self.cited:
                 self.cited.append(key)
-        return "; ".join(self.db.reference(k).citation for k in keys)
+        return "; ".join(self.db.reference(k).in_text(self.style) for k in keys)
 
     def cite(self, *keys):
         return f"({self.citation(*keys)})"
@@ -100,7 +112,7 @@ class MethodsBuilder:
         """
         Tool with its version and citation at the first mention, the name
         only after that; detail (e.g. options) goes in the same parentheses:
-        "MACS2 v2.2.9.1 (callpeak ...; Zhang et al., 2008)"
+        "MACS2 v2.2.9.1 (callpeak ...; PubMed ID: 18798982)"
         """
         tool = self.db.tool(key)
         if key in self.mentioned:
@@ -121,7 +133,7 @@ class MethodsBuilder:
     def references(self):
         """Cited references (Reference), sorted as in the reference list"""
         refs = [self.db.reference(k) for k in self.cited]
-        return sorted(refs, key=lambda r: r.format().lower().lstrip("("))
+        return sorted(refs, key=lambda r: r.format(self.style).lower().lstrip("("))
 
     def cited_packages(self):
         """{(environment, package)} of the tools mentioned in the text"""

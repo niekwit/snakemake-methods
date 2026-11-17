@@ -54,10 +54,26 @@ class Reference:
             return ", ".join(x for x in [self.booktitle, self.pages] if x)
         return self.publisher or ""
 
-    def format(self):
+    def in_text(self, style="id"):
+        """
+        In-text citation (without parentheses). Style "id": "PubMed ID:
+        18798982", else "DOI: 10.1093/...", else the URL. Style
+        "author-year": "Zhang et al., 2008".
+        """
+        if style == "author-year":
+            return self.citation
+        if self.pmid:
+            return f"PubMed ID: {self.pmid}"
+        if self.doi:
+            return f"DOI: {self.doi}"
+        return self.url
+
+    def format(self, style="id"):
         """
         Full reference: "Zhang Y, Liu T, ... (2008). Model-based analysis of
-        ChIP-Seq (MACS). Genome Biol 9:R137. https://doi.org/..."
+        ChIP-Seq (MACS). Genome Biol 9:R137. PubMed ID: 18798982.
+        https://doi.org/..." (the PubMed ID with style "id" only, as cited in
+        the text)
         """
         text = ", ".join(self.authors)
         if self.et_al:
@@ -70,6 +86,8 @@ class Reference:
         venue = self.venue()
         if venue:
             text += f" {venue}."
+        if style == "id" and self.pmid:
+            text += f" PubMed ID: {self.pmid}."
         if self.link:
             text += f" {self.link}"
         if self.note:

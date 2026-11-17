@@ -39,7 +39,7 @@ def methods_markdown(
     references = builder.references()
     if references:
         text += "## References\n\n"
-        text += "\n".join(f"- {r.format()}" for r in references) + "\n\n"
+        text += "\n".join(f"- {r.format(builder.style)}" for r in references) + "\n\n"
     if config is not None:
         text += "## Configuration\n\n```yaml\n" + config_yaml(config) + "```\n"
     return text

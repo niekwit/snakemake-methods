@@ -5,6 +5,11 @@ A workflow that adopts the package writes, after all its other outputs:
 | File | Content |
 |---|---|
 | `methods/methods.md` | Methods of the steps that were run, tools cited with their version at first mention, the cited references and the configuration of the run |
+
+In the text, references are cited by PubMed ID, else DOI, else URL:
+"MACS2 v2.2.9.1 (PubMed ID: 18798982)". The reference list gives the full
+references, including the PubMed IDs. For author-year citations ("Zhang et al.,
+2008") add `citation_style="author-year"` to the params of the `methods` rule.
 | `methods/software_versions.tsv` | `environment`, `package`, `version`, `source` (conda, wrapper, git, api), `cited` (yes for the packages of the tools in the text) |
 | `methods/references.bib` | The cited references as BibTeX (e.g. for Zotero) |
 
@@ -128,8 +133,8 @@ Available in the template:
 
 | Name | Use |
 |---|---|
-| `tool("key", detail=None)` | First mention: `MACS2 v2.2.9.1 (detail; Zhang et al., 2008)`; later: `MACS2` or `MACS2 (detail)` |
-| `cite("key", ...)` / `citation(...)` | `(Benjamini & Hochberg, 1995)` / without parentheses |
+| `tool("key", detail=None)` | First mention: `MACS2 v2.2.9.1 (detail; PubMed ID: 18798982)`; later: `MACS2` or `MACS2 (detail)` |
+| `cite("key", ...)` / `citation(...)` | `(DOI: 10.1111/j.2517-6161.1995.tb02031.x)` / without parentheses; several references are separated by `; ` |
 | `version("key")` | Version string of a tool |
 | `package_version("package")` | Version string of any package in the version files (e.g. `string-db-date`) |
 | `code(x)`, `x \| code` | Inline code |
